@@ -45,6 +45,7 @@ public class PersonaServiceImpl implements PersonaService{
 
     @Override
     public Persona actualizarPersona(Persona persona) {
+
         return personaRepository.save(persona);
     }
 

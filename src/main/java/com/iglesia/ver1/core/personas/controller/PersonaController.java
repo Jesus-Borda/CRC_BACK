@@ -26,17 +26,9 @@ public class PersonaController {
     public List<PersonaResponseDTO> listarPersonas (){
         return personaService.listarPersonas();
     }
-
-
-
-
-
-
-
-
-
-    @PatchMapping("/actualizarPersona/{id}")
     //------------------------------ACTUALIZAR
+    @PatchMapping("/actualizarPersona/{id}")
+
     public Persona actualizarPersona (@PathVariable Integer id, @RequestBody Persona persona){
 
         Persona personaExistente = personaService.get(id)

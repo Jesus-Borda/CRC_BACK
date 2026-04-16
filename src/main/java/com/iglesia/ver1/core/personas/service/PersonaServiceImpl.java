@@ -1,5 +1,8 @@
 package com.iglesia.ver1.core.personas.service;
 
+import com.iglesia.ver1.core.personas.dto.PersonaRequestDTO;
+import com.iglesia.ver1.core.personas.dto.PersonaResponseDTO;
+import com.iglesia.ver1.core.personas.mapper.PersonaMapper;
 import com.iglesia.ver1.core.personas.model.Persona;
 import com.iglesia.ver1.core.personas.repository.PersonaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +16,17 @@ public class PersonaServiceImpl implements PersonaService{
 
     @Autowired
     private PersonaRepository personaRepository;
+    @Autowired
+    private PersonaMapper personaMapper;
 
 
     @Override
-    public Persona guardarPersona(Persona persona) {
-        return  personaRepository.save(persona);
+    public PersonaResponseDTO guardarPersona(PersonaRequestDTO dto) {
+        Persona persona = personaMapper.toEntity(dto);
+
+        Persona guardada = personaRepository.save(persona);
+
+        return personaMapper.toDTO(guardada);
     }
 
     @Override
@@ -26,8 +35,12 @@ public class PersonaServiceImpl implements PersonaService{
     }
 
     @Override
-    public List<Persona> listarPersonas() {
-        return personaRepository.findAll();
+    public List<PersonaResponseDTO> listarPersonas() {
+
+        return personaRepository.findAll()
+                .stream()
+                .map(personaMapper::toDTO)
+                .toList();
     }
 
     @Override

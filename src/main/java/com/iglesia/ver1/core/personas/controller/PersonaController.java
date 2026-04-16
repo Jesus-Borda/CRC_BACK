@@ -1,5 +1,7 @@
 package com.iglesia.ver1.core.personas.controller;
 
+import com.iglesia.ver1.core.personas.dto.PersonaRequestDTO;
+import com.iglesia.ver1.core.personas.dto.PersonaResponseDTO;
 import com.iglesia.ver1.core.personas.model.Persona;
 import com.iglesia.ver1.core.personas.service.PersonaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,14 +18,23 @@ public class PersonaController {
     //-------------------------------METODOS-------------------------------
     //------------------------------CREAR
     @PostMapping("/crearPersona")
-    public Persona crearPersona ( @RequestBody Persona persona){
-        return personaService.guardarPersona(persona);
+    public PersonaResponseDTO crearPersona (@RequestBody PersonaRequestDTO dto){
+        return personaService.guardarPersona(dto);
     }
     //------------------------------LISTAR
     @GetMapping("/listarPersonas")
-    public List<Persona> listarPersonas (){
+    public List<PersonaResponseDTO> listarPersonas (){
         return personaService.listarPersonas();
     }
+
+
+
+
+
+
+
+
+
     @PatchMapping("/actualizarPersona/{id}")
     //------------------------------ACTUALIZAR
     public Persona actualizarPersona (@PathVariable Integer id, @RequestBody Persona persona){

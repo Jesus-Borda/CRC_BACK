@@ -50,7 +50,7 @@ public class ModuloController {
         return moduloService.actualizarModulo(moduloExistente);
     }
 
-
+    //------------------------------ELIMINAR
    @DeleteMapping("/eliminarModulo/{id}")
     public void eliminarModulo (@PathVariable Integer id){
         Modulo moduloExistente = moduloService.get(id)

@@ -31,6 +31,7 @@ public class PersonaServiceImpl implements PersonaService{
 
     @Override
     public Optional<Persona> get(Integer id_persona) {
+
         return personaRepository.findById(id_persona);
     }
 

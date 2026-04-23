@@ -26,6 +26,7 @@ public class MateriaController {
     public List<MateriaResponseDTO> listarMaterias (){
         return materiaService.listarMaterias();
     }
+
     @GetMapping("/buscarMateria/{id}")
     public Materia buscarPorId (@PathVariable Integer id){
         return materiaService.getMateria(id)

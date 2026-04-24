@@ -19,14 +19,28 @@ public class MateriaDictadaMapper {
     }
     //DEL BACK AL FRONT PARA CONSULTAS GET
     public MateriaDictadaResponseDTO toDTO (MateriaDictada m){
+
         MateriaDictadaResponseDTO dto = new MateriaDictadaResponseDTO();
+        // 1. Mapeas el ID principal
         dto.setId(m.getIdMateriaDictada());
-        dto.setNombreMateria(dto.getNombreMateria());
-        dto.setNombreModulo(dto.getNombreModulo());
-        dto.setNombreProfesor(dto.getNombreProfesor());
-        dto.setNombrePeriodo(dto.getNombrePeriodo());
-        dto.setFechaInicio(dto.getFechaInicio());
-        dto.setFechaFin(dto.getFechaFin());
+
+        // 2. Extraes los nombres de los objetos relacionados (Navegación de objetos)
+        if(m.getMateria() != null){
+            dto.setNombreMateria(m.getMateria().getNombreMateria());
+            if(m.getMateria().getModulo() != null){
+                dto.setNombreModulo(m.getProfesor().getPersona().getNombres());
+            }
+        }
+        if (m.getProfesor() != null && m.getProfesor().getPersona() != null) {
+            dto.setNombreProfesor(m.getProfesor().getPersona().getNombres());
+        }
+
+        if (m.getPeriodo() != null) {
+            dto.setNombrePeriodo(m.getPeriodo().getNombre());
+            dto.setFechaInicio(m.getPeriodo().getFechaInicio());
+            dto.setFechaFin(m.getPeriodo().getFechaFin());
+        }
+
         return dto;
 
     }

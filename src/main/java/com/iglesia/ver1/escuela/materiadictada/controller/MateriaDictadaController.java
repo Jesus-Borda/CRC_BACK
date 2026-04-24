@@ -12,6 +12,7 @@ import java.util.List;
 @RestController
 @RequestMapping("api/escuela/materiaDictada")
 public class MateriaDictadaController {
+
       @Autowired
       private MateriaDictadaService materiaDictadaService;
     //-------------------------------METODOS-------------------------------

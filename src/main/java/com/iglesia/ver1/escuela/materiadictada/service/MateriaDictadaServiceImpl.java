@@ -12,11 +12,12 @@ import com.iglesia.ver1.escuela.periodo.repository.PeriodoRepository;
 import com.iglesia.ver1.escuela.profesor.model.Profesor;
 import com.iglesia.ver1.escuela.profesor.repository.ProfesorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
-
+@Service
 public class MateriaDictadaServiceImpl implements MateriaDictadaService{
     @Autowired
     private MateriaDictadaRepository materiaDictadaRepository;

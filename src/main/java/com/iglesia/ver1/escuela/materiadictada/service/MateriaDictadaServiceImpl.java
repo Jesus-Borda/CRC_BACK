@@ -67,21 +67,35 @@ public class MateriaDictadaServiceImpl implements MateriaDictadaService{
     @Transactional
     @Override
     public MateriaDictadaResponseDTO actualizarMateriaDictada(Long id, MateriaDictadaRequestDTO dto) {
-        MateriaDictada materiaDictada = materiaDictadaRepository.findById(id).orElseThrow(()->new RuntimeException("MateriaDictada NO encontrada"));
-        if (dto.getIdMateria() != null){
+        // 1. Buscamos la entidad original
+        MateriaDictada materiaDictada = materiaDictadaRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("MateriaDictada NO encontrada"));
+
+        // 2. Si el DTO trae un ID de materia, lo validamos Y lo asignamos
+        if (dto.getIdMateria() != null) {
             Materia materia = materiaRepository.findById(dto.getIdMateria())
-                            .orElseThrow(()->new RuntimeException("Materia No exste"));
+                    .orElseThrow(() -> new RuntimeException("Materia No existe"));
+            materiaDictada.setMateria(materia); // <--- ESTO FALTABA
         }
+
+        // 3. Lo mismo para el profesor
         if (dto.getIdProfesor() != null) {
             Profesor profesor = profesorRepository.findById(dto.getIdProfesor())
-                    .orElseThrow(()->new RuntimeException("Profesor no encontrado"));
+                    .orElseThrow(() -> new RuntimeException("Profesor no encontrado"));
+            materiaDictada.setProfesor(profesor); // <--- ESTO FALTABA
         }
-        if (dto.getIdPeriodo() != null){
+
+        // 4. Lo mismo para el periodo
+        if (dto.getIdPeriodo() != null) {
             Periodo periodo = periodoRepository.findById(dto.getIdPeriodo())
-                    .orElseThrow(()-> new RuntimeException("Periodo no encontrado"));
+                    .orElseThrow(() -> new RuntimeException("Periodo no encontrado"));
+            materiaDictada.setPeriodo(periodo); // <--- ESTO FALTABA
         }
+
+        // 5. Guardamos los cambios
         MateriaDictada actualizada = materiaDictadaRepository.save(materiaDictada);
 
+        // 6. Convertimos a ResponseDTO para que Postman muestre los nombres actualizados
         return materiaDictadaMapper.toDTO(actualizada);
     }
 

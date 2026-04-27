@@ -28,7 +28,7 @@ public class MateriaDictadaMapper {
         if(m.getMateria() != null){
             dto.setNombreMateria(m.getMateria().getNombreMateria());
             if(m.getMateria().getModulo() != null){
-                dto.setNombreModulo(m.getProfesor().getPersona().getNombres());
+                dto.setNombreModulo(m.getMateria().getModulo().getNombre());
             }
         }
         if (m.getProfesor() != null && m.getProfesor().getPersona() != null) {

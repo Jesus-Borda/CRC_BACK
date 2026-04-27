@@ -27,7 +27,7 @@ public class MateriaDictadaController {
         return materiaDictadaService.listarMateriaDictada();
     }
     @GetMapping("/buscarMateriaDictada/{id}")
-    public  MateriaDictada buscarMateriaPorId (@PathVariable Integer id){
+    public  MateriaDictadaResponseDTO buscarMateriaPorId (@PathVariable Integer id){
         return materiaDictadaService.getMateriaDictada(id)
                 .orElseThrow(()->new RuntimeException("Materia no encontrada"));
     }
@@ -39,7 +39,7 @@ public class MateriaDictadaController {
     //------------------------------ELIMINAR
     @DeleteMapping("/eliminarMateria/{id}")
     public void  eliminarMateriaDictada (@PathVariable Integer id){
-        MateriaDictada materiaDictada = materiaDictadaService.getMateriaDictada(id)
+        MateriaDictadaResponseDTO materiaDictada = materiaDictadaService.getMateriaDictada(id)
                 .orElseThrow(()-> new RuntimeException("Materia Dictada no encontrada"));
         materiaDictadaService.eliminarMateria(id);
     }

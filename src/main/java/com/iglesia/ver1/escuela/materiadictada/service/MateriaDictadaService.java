@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public interface MateriaDictadaService {
     MateriaDictadaResponseDTO guardarMateriaDictada (MateriaDictadaRequestDTO dto);
-    Optional<MateriaDictada> getMateriaDictada (Integer id);
+    Optional<MateriaDictadaResponseDTO> getMateriaDictada (Integer id);
     List<MateriaDictadaResponseDTO> listarMateriaDictada ();
     MateriaDictadaResponseDTO actualizarMateriaDictada (Long id, MateriaDictadaRequestDTO dto);
     void eliminarMateria (Integer id);

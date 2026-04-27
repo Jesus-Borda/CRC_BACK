@@ -50,9 +50,12 @@ public class MateriaDictadaServiceImpl implements MateriaDictadaService{
     }
 
     @Override
-    public Optional<MateriaDictada> getMateriaDictada (Integer id) {
-        return materiaDictadaRepository.findById(id.longValue());
+    public Optional<MateriaDictadaResponseDTO> getMateriaDictada(Integer id) {
+
+        return materiaDictadaRepository.findById(id.longValue())
+                .map(materiaDictada -> materiaDictadaMapper.toDTO(materiaDictada));
     }
+
 
     @Override
     public List<MateriaDictadaResponseDTO> listarMateriaDictada() {

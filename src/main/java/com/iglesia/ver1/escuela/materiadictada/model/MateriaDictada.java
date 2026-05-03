@@ -12,12 +12,15 @@ public class MateriaDictada {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_materia_dictada")
     private Long idMateriaDictada;
+
     @ManyToOne (fetch = FetchType.LAZY)
     @JoinColumn(name = "id_materia")
     private Materia materia;
+
     @ManyToOne (fetch = FetchType.LAZY)
     @JoinColumn(name = "id_profesor")
     private Profesor profesor;
+
     @ManyToOne (fetch = FetchType.LAZY)
     @JoinColumn(name = "id_periodo")
     private Periodo periodo;

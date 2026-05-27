@@ -24,6 +24,7 @@ public class InscripcionMapper {
         // 2. Extraes los nombres de los objetos relacionados (Navegación de objetos)
         if (i.getEstudiante() !=null){
             dto.setNombreEstudiante(i.getEstudiante().getPersona().getNombres());
+            dto.setIdEstudiante(i.getEstudiante().getId());
         }
         if (i.getMateriaDictada() !=null){
             dto.setNombreMateria(i.getMateriaDictada().getMateria().getNombreMateria());

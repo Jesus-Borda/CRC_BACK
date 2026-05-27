@@ -5,6 +5,7 @@ import lombok.Data;
 @Data
 public class InscripcionMateriaResponseDTO {
    private Long id;
+   private Long idEstudiante;
    private String nombreMateria;
    private String nombreModulo;
    private String nombrePeriodo;

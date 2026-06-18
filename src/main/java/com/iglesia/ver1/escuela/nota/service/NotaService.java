@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public interface NotaService {
     NotaResponseDTO guardarNota (NotaRequestDTO dto);
-    Optional<Nota> getNotas (Integer id);
+    Optional<NotaResponseDTO> getNotas (Integer id);
     List<NotaResponseDTO> listarNotas ();
     NotaResponseDTO actualizarNota (Long id, NotaRequestDTO dto);
     void eliminarNota (Integer id);

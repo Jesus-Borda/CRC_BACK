@@ -35,8 +35,8 @@ public class NotaServiceImpl implements  NotaService{
     }
 
     @Override
-    public Optional<Nota> getNotas(Integer id) {
-        return notaRepository.findById(id.longValue());
+    public Optional<NotaResponseDTO> getNotas(Integer id) {
+        return notaRepository.findById(id.longValue()).map(nota-> notaMapper.toDto(nota));
     }
 
     @Override

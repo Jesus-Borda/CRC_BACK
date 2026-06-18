@@ -26,7 +26,8 @@ public class MateriaServiceImpl implements MateriaService {
     @Override
     public MateriaResponseDTO guardarMateria(MateriaRequestDTO dto) {
         Materia materia = materiaMapper.toEntity(dto);
-        Modulo modulo=moduloRepository.findById(dto.getIdModulo()).orElseThrow(() -> new RuntimeException("Modulo no encontrado"));
+        Modulo modulo=moduloRepository.findById(dto.getIdModulo())
+                .orElseThrow(() -> new RuntimeException("Modulo no encontrado"));
         materia.setModulo(modulo);
         Materia guardada = materiaRepository.save(materia);
         return materiaMapper.toDto(guardada);
@@ -74,6 +75,7 @@ public class MateriaServiceImpl implements MateriaService {
 
     @Override
     public void eliminarMateria(Integer id) {
+
         materiaRepository.deleteById(id.longValue());
     }
 }

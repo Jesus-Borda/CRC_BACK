@@ -27,18 +27,22 @@ public class Nota {
     @Column(precision = 5, scale = 2)
     private BigDecimal asistencia;
 
+    @Column(precision = 5, scale = 2,name = "trabajo_final")
+    private BigDecimal trabajo;
+
     @Column(name = "nota_final", precision = 5, scale = 2)
     private BigDecimal notaFinal;
 
     public Nota() {
     }
 
-    public Nota(Long id, Inscripcion inscripcion, BigDecimal quiz, BigDecimal examen, BigDecimal asistencia, BigDecimal notaFinal) {
+    public Nota(Long id, Inscripcion inscripcion, BigDecimal quiz, BigDecimal examen, BigDecimal asistencia, BigDecimal trabajo, BigDecimal notaFinal) {
         this.id = id;
         this.inscripcion = inscripcion;
         this.quiz = quiz;
         this.examen = examen;
         this.asistencia = asistencia;
+        this.trabajo = trabajo;
         this.notaFinal = notaFinal;
     }
 
@@ -82,6 +86,14 @@ public class Nota {
         this.asistencia = asistencia;
     }
 
+    public BigDecimal getTrabajo() {
+        return trabajo;
+    }
+
+    public void setTrabajo(BigDecimal trabajo) {
+        this.trabajo = trabajo;
+    }
+
     public BigDecimal getNotaFinal() {
         return notaFinal;
     }
@@ -98,6 +110,7 @@ public class Nota {
                 ", quiz=" + quiz +
                 ", examen=" + examen +
                 ", asistencia=" + asistencia +
+                ", trabajo=" + trabajo +
                 ", notaFinal=" + notaFinal +
                 '}';
     }

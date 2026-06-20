@@ -32,6 +32,7 @@ public class NotaMapper {
             dto.setAnio(nota.getInscripcion().getMateriaDictada().getPeriodo().getAnio());
             dto.setQuiz(nota.getQuiz());
             dto.setExamen(nota.getExamen());
+            dto.setTrabajo(nota.getTrabajo());
             dto.setAsistencia(nota.getAsistencia());
             dto.setNotaFinal(nota.getNotaFinal());
         }

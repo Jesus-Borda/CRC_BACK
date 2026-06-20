@@ -9,6 +9,7 @@ public class NotaRequestDTO {
     private Long idinscripcion;
     private BigDecimal quiz;
     private BigDecimal examen;
+    private BigDecimal trabjo;
     private BigDecimal asistencia;
     private BigDecimal notaFinal;
 

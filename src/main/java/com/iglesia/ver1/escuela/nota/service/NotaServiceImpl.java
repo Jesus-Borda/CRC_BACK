@@ -60,9 +60,13 @@ public class NotaServiceImpl implements  NotaService{
         if (dto.getAsistencia()!=null){
             nota.setAsistencia(dto.getAsistencia());
         }
+        if (dto.getTrabjo()!=null){
+            nota.setTrabajo(dto.getTrabjo());
+        }
         if (dto.getNotaFinal()!=null){
             nota.setNotaFinal(dto.getNotaFinal());
         }
+
         Nota actualizada = notaRepository.save(nota);
 
         return notaMapper.toDto(actualizada);

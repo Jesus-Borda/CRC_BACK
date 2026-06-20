@@ -21,6 +21,7 @@ public class NotaResponseDTO {
     private Integer anio;
     private BigDecimal quiz;
     private BigDecimal examen;
+    private BigDecimal trabajo;
     private BigDecimal asistencia;
     private BigDecimal notaFinal;
 

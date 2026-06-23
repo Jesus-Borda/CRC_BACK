@@ -70,9 +70,19 @@ public class NotaServiceImpl implements  NotaService{
         if (dto.getTrabajo()!=null){
             nota.setTrabajo(dto.getTrabajo());
         }
-        if (dto.getNotaFinal()!=null){
-            nota.setNotaFinal(dto.getNotaFinal());
-        }
+        // Recalcular la nota final usando los valores actuales
+        BigDecimal quiz = nota.getQuiz() != null ? nota.getQuiz() : BigDecimal.ZERO;
+        BigDecimal examen = nota.getExamen() != null ? nota.getExamen() : BigDecimal.ZERO;
+        BigDecimal asistencia = nota.getAsistencia() != null ? nota.getAsistencia() : BigDecimal.ZERO;
+        BigDecimal trabajo = nota.getTrabajo() != null ? nota.getTrabajo() : BigDecimal.ZERO;
+
+        BigDecimal notaFinal =
+                quiz.multiply(new BigDecimal("0.20"))
+                        .add(asistencia.multiply(new BigDecimal("0.10")))
+                        .add(examen.multiply(new BigDecimal("0.35")))
+                        .add(trabajo.multiply(new BigDecimal("0.35")));
+
+        nota.setNotaFinal(notaFinal);
 
         Nota actualizada = notaRepository.save(nota);
 

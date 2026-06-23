@@ -11,6 +11,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,6 +31,12 @@ public class NotaServiceImpl implements  NotaService{
         Inscripcion inscripcion = inscripcionRepository.findById(dto.getIdinscripcion())
                 .orElseThrow(() ->new RuntimeException("Inscripcion no encontrada"));
         nota.setInscripcion(inscripcion);
+        BigDecimal notaFinal =
+                dto.getQuiz().multiply(new BigDecimal("0.20"))
+                        .add(dto.getAsistencia().multiply(new BigDecimal("0.10")))
+                        .add(dto.getExamen().multiply(new BigDecimal("0.35")))
+                        .add(dto.getTrabajo().multiply(new BigDecimal("0.35")));
+        nota.setNotaFinal(notaFinal);
         Nota guardada = notaRepository.save(nota);
         return notaMapper.toDto(guardada);
     }
@@ -60,8 +67,8 @@ public class NotaServiceImpl implements  NotaService{
         if (dto.getAsistencia()!=null){
             nota.setAsistencia(dto.getAsistencia());
         }
-        if (dto.getTrabjo()!=null){
-            nota.setTrabajo(dto.getTrabjo());
+        if (dto.getTrabajo()!=null){
+            nota.setTrabajo(dto.getTrabajo());
         }
         if (dto.getNotaFinal()!=null){
             nota.setNotaFinal(dto.getNotaFinal());

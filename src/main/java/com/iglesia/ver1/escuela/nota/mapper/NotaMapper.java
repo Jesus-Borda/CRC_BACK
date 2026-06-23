@@ -13,6 +13,10 @@ public class NotaMapper {
             return null;
         }
         Nota n = new Nota();
+        n.setQuiz(dto.getQuiz());
+        n.setExamen(dto.getExamen());
+        n.setAsistencia(dto.getAsistencia());
+        n.setTrabajo(dto.getTrabajo());
         return n;
     }
     //DEL BACK AL FRONT PARA CONSULTAS GET

@@ -21,6 +21,7 @@ public class PersonaController {
     public PersonaResponseDTO crearPersona (@RequestBody PersonaRequestDTO dto){
         return personaService.guardarPersona(dto);
     }
+
     //------------------------------LISTAR
     @GetMapping("/listarPersonas")
     public List<PersonaResponseDTO> listarPersonas (){

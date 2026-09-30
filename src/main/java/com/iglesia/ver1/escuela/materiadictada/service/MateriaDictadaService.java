@@ -2,8 +2,6 @@ package com.iglesia.ver1.escuela.materiadictada.service;
 
 import com.iglesia.ver1.escuela.materiadictada.dto.MateriaDictadaRequestDTO;
 import com.iglesia.ver1.escuela.materiadictada.dto.MateriaDictadaResponseDTO;
-import com.iglesia.ver1.escuela.materiadictada.model.MateriaDictada;
-
 import java.util.List;
 import java.util.Optional;
 

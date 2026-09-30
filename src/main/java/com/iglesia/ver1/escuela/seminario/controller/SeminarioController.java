@@ -10,27 +10,37 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/Seminario")
+@RequestMapping("api/escuela/Seminario")
 public class SeminarioController {
     @Autowired
-    private SeminarioService seminarioService;
-    //-------------------------------METODOS-------------------------------
+    private SeminarioService  seminarioService ;
+   //-------------------------------METODOS-------------------------------
     //------------------------------CREAR
     @PostMapping("/crearSeminario")
-    public SeminarioResponseDTO crearSeminarioResponseDTO (@RequestBody SeminarioRequestDTO dto){
+    public SeminarioResponseDTO crearSeminario (@RequestBody SeminarioRequestDTO dto){
         return seminarioService.guardarSeminario(dto);
     }
+
     //------------------------------LISTAR
     @GetMapping("/listarSeminarios")
     public List<SeminarioResponseDTO> listarSeminarios (){return seminarioService.listarSeminarios();
     }
+    @GetMapping("/buscarSeminario/{id}")
+    public Seminario buscarPorId (@PathVariable Integer id){
+        return seminarioService.getSeminario(id)
+                .orElseThrow(()->new RuntimeException("Seminario no encontrado"));
+    }
     //------------------------------ACTUALIZAR
-    @PatchMapping("/actualizarSeminario/{id}")
-    public Seminario actualizarSeminario (@PathVariable Integer id, @RequestBody Seminario seminario){
-        Seminario seminarioExistente = seminarioService.getSeminario(id).orElseThrow(()-> new RuntimeException("Servicio no encontrado") );
+    @PostMapping("/actualizarSeminario/{id}")
+    public SeminarioResponseDTO actualizarSeminario (@PathVariable Long id, @RequestBody SeminarioRequestDTO dto){
 
-        if (seminario.getNombreSeminario()!= null){
-
-        }
+        return seminarioService.actualizarSeminarios(id,dto);
+    }
+    //------------------------------ELIMINAR
+    @DeleteMapping("/eliminarSeminario/{id}")
+    public void eliminarSeminario (@PathVariable Integer id){
+        Seminario seminarioExistente= seminarioService.getSeminario(id)
+                .orElseThrow(()->new RuntimeException("Seminario no encontrado00000"));
+        seminarioService.eliminarSeminario(id);
     }
 }

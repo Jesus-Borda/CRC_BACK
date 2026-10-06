@@ -1,13 +1,13 @@
 package com.iglesia.ver1.escuela.clase.mapper;
 
+import com.iglesia.ver1.escuela.clase.dto.ClaseRequestDTO;
 import com.iglesia.ver1.escuela.clase.dto.ClaseResponseDTO;
 import com.iglesia.ver1.escuela.clase.model.Clase;
-import com.iglesia.ver1.escuela.materiadictada.dto.MateriaDictadaRequestDTO;
 import org.springframework.stereotype.Component;
 
 @Component
 public class ClaseMapper {
-    public Clase toEntity (MateriaDictadaRequestDTO dto){
+    public Clase toEntity (ClaseRequestDTO dto){
         if (dto==null){
             return null;
         }
